@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        marquee {
+            1em;
+            font-size: larger;
+            10%;
+            10%;
+            color: red;
+        }
+        b {
+            background-color: yellow;
+        }
+        table {
+            1em;
+            border: 1px solid black;
+            border-collapse: collapse;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            2em;
+            background-color: lightgray;
+        }
+        tr, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        input {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="10"><b>WELCOME TO FRESHERS WORLD !!! </b></marquee>
+    <form id="form" name="form" onsubmit="return submitForm();">
+        <table>
+            <tr>
+                <th colspan="3">REGISTRATION FORM</th>
+            </tr>
+            <tr>
+                <td>NAME</td>
+                <td colspan="2"><input type="text" id="fullName" name="fullName" placeholder="Enter your name"></td>
+            </tr>
+            <tr>
+                <td>AGE</td>
+                <td colspan="2">
+                    <select id="age">
+                        <option value="">SELECT</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>PASSWORD</td>
+                <td colspan="2"><input type="password" id="firstPass" name="firstPass" placeholder="Enter your password"></td>
+            </tr>
+            <tr>
+                <td>RETYPE PASSWORD</td>
+                <td colspan="2"><input type="password" id="secPass" name="secPass" placeholder="Re-enter your password"></td>
+            </tr>
+            <tr>
+                <td rowspan="4">SELECT YOUR SECURITY QUESTION</td>
+                <td colspan="2"><input type="radio" name="security">What is your pet name?</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="radio" name="security">Who is your best friend?</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="radio" name="security">What is your favourite color?</td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="radio" name="security">Who is your favourite teacher?</td>
+            </tr>
+            <tr>
+                <td>ANSWER OF SECURITY QUESTION</td>
+                <td colspan="2"><input type="text" id="ansOfQue" name="ansOfQue" placeholder="Answer the security question"></td>
+            </tr>
+            <tr>
+                <td>EMAIL ID</td>
+                <td colspan="2"><input type="email" id="emailId" name="emailId" placeholder="Enter your email ID"></td>
+            </tr>
+            <tr>
+                <td>LANGUAGES KNOWN</td>
+                <td colspan="2">
+                    <input type="checkbox" id="languageMal" value="mal">MALAYALAM
+                    <input type="checkbox" id="languageEng" value="eng">ENGLISH
+                    <input type="checkbox" id="languageHin" value="hindi">HINDI
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">Phone number</td>
+                <td>Home</td>
+                <td>Office</td>
+            </tr>
+            <tr>
+                <td><input type="text" id="phoneNum" placeholder="Enter home number"></td>
+                <td colspan="2"><input type="text" id="offNum" placeholder="Enter office number"></td>
+            </tr>
+            <tr>
+                <td>UPLOAD CV</td>
+                <td colspan="2"><input type="file"></td>
+            </tr>
+            <tr>
+                <td style="text-align: center;">
+                    <input type="reset" style="background-color: red; color: white; padding: 6px 12px; border: 1px solid transparent;">
+                </td>
+                <td colspan="2" style="text-align: center;">
+                    <input type="submit" style="background-color: green; color: white; padding: 6px 12px; border: 1px solid transparent;">
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
+<script>
+    function submitForm() {
+        var fullName = document.form.fullName;
+        var age = document.form.age;
+        var password = document.form.firstPass;
+        var secPass = document.form.secPass;
+        var ansOfQue = document.form.ansOfQue;
+        var emailId = document.form.emailId;
+        var phoneNum = document.form.phoneNum;
+        var offNum = document.form.offNum;
+        var ren = /[0-9!@#$%^&*]/;
+        var qw = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        fullName.placeholder = "Enter your name";
+        age.placeholder = "";
+        password.placeholder = "Enter your password";
+        secPass.placeholder = "Re-enter your password";
+        ansOfQue.placeholder = "Answer the security question";
+        emailId.placeholder = "Enter your email ID";
+        phoneNum.placeholder = "Enter home number";
+        offNum.placeholder = "Enter office number";
+
+        if (fullName.value === "") {
+            fullName.placeholder = "Please enter your name";
+            fullName.focus();
+            return false;
+        } else if (ren.test(fullName.value)) {
+            fullName.placeholder = "Please enter a valid name";
+            fullName.focus();
+            return false;
+        } else if (age.value === "") {
+            age.placeholder = "Please select your age";
+            age.focus();
+            return false;
+        } else if (password.value === "") {
+            password.placeholder = "Please enter a password";
+            password.focus();
+            return false;
+        } else if (secPass.value === "") {
+            secPass.placeholder = "Please re-enter the password";
+            secPass.focus();
+            return false;
+        } else if (password.value !== secPass.value) {
+            secPass.placeholder = "Passwords don't match!";
+            secPass.focus();
+            return false;
+        } else if (emailId.value === "") {
+            emailId.placeholder = "Enter your email ID";
+            emailId.focus();
+            return false;
+        } else if (!qw.test(emailId.value)) {
+            emailId.placeholder = "Enter a valid email ID";
+            emailId.focus();
+            return false;
+        } else if (phoneNum.value === "") {
+            phoneNum.placeholder = "Enter your home number";
+            phoneNum.focus();
+            return false;
+        } else if (!/^\d+$/.test(phoneNum.value)) {
+            phoneNum.placeholder = "Enter a valid phone number";
+            phoneNum.focus();
+            return false;
+        } else if (offNum.value && !/^\d+$/.test(offNum.value)) {
+            offNum.placeholder = "Enter a valid office number";
+            offNum.focus();
+            return false;
+        }
+        return true;
+    }
+</script>
